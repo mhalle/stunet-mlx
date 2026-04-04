@@ -1,0 +1,34 @@
+[project]
+name = "stunet-mlx"
+version = "0.1.0"
+description = "STU-Net on Apple Silicon via MLX — scalable universal 3D medical image segmentation"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+dependencies = [
+    "mlx>=0.31",
+    "numpy",
+    "nibabel",
+    "scipy",
+    "safetensors",
+    "huggingface-hub",
+]
+
+[project.optional-dependencies]
+test = ["pytest", "torch"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/stunet_mlx"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[dependency-groups]
+dev = [
+    "torch>=2.11.0",
+    "pytest>=9.0.0",
+]
